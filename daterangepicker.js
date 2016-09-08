@@ -28,6 +28,8 @@
 }(this, function(moment, $) {
     var DateRangePicker = function(element, options, cb) {
 
+        console.log(element, this);
+
         //default settings for options
         this.parentEl = 'body';
         this.element = $(element);
@@ -1201,6 +1203,7 @@
         },
 
         clickPrev: function(e) {
+            e.stopPropagation();
             var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.subtract(1, 'month');
@@ -1213,6 +1216,7 @@
         },
 
         clickNext: function(e) {
+            e.stopPropagation();
             var cal = $(e.target).parents('.calendar');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.add(1, 'month');
@@ -1283,6 +1287,7 @@
             var cal = $(e.target).parents('.calendar');
             var date = cal.hasClass('left') ? this.leftCalendar.calendar[row][col] : this.rightCalendar.calendar[row][col];
 
+            e.stopPropagation();
             //
             // this function needs to do a few things:
             // * alternate between selecting a start and end date for the range,
